@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>西班牙語水果小遊戲</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .card {
+      font-size: 30px;
+      margin: 20px;
+    }
+    input {
+      font-size: 20px;
+      padding: 5px;
+    }
+    button {
+      font-size: 18px;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>🍎 西班牙語水果小遊戲</h1>
+
+  <div class="card" id="question">蘋果</div>
+
+  <input type="text" id="answer" placeholder="輸入西語">
+  <button onclick="check()">提交</button>
+
+  <p id="result"></p>
+  <p>分數：<span id="score">0</span></p>
+
+<script>
+  const fruits = [
+    { zh: "蘋果", es: "manzana" },
+    { zh: "香蕉", es: "plátano" },
+    { zh: "橘子", es: "naranja" },
+    { zh: "葡萄", es: "uva" },
+    { zh: "草莓", es: "fresa" },
+    { zh: "鳳梨", es: "piña" },
+    { zh: "西瓜", es: "sandía" },
+    { zh: "芒果", es: "mango" }
+  ];
+
+  let index = 0;
+  let score = 0;
+
+  function check() {
+    let user = document.getElementById("answer").value.trim();
+    let correct = fruits[index].es;
+
+    if (user === correct) {
+      score++;
+      document.getElementById("result").innerText = "✔ 正確！";
+    } else {
+      document.getElementById("result").innerText = "❌ 錯了，正確是 " + correct;
+    }
+
+    document.getElementById("score").innerText = score;
+
+    index++;
+    if (index < fruits.length) {
+      document.getElementById("question").innerText = fruits[index].zh;
+    } else {
+      document.getElementById("question").innerText = "🎉 完成遊戲！";
+    }
+
+    document.getElementById("answer").value = "";
+  }
+</script>
+
+</body>
+</html>
